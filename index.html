@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cart Assignment</title>
+    <style>
+        .product {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .form {
+            display: flex;
+        }
+        .row1{
+            display: flex;
+        }
+        .row2{
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Products</h1>
+    <section class="form">
+        <div class="products">
+            <div class="row1">
+                <div class="product">
+                    <p>Product #1</p>
+                    <button onclick="addToCart(1)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <p>Product #2</p>
+                    <button onclick="addToCart(2)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <p>Product #3</p>
+                    <button onclick="addToCart(3)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="row2">
+                <div class="product">
+                    <p>Product #4</p>
+                    <button onclick="addToCart(4)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <p>Product #5</p>
+                    <button onclick="addToCart(5)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <p>Product #6</p>
+                    <button onclick="addToCart(6)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Cart</h2>
+        <div class="cart">
+            <div class="cart-item">
+                <p>Product # 1: 2</p>
+                <button onclick="removeFromCart(1)">Remove</button>
+            </div>
+        </div>
+    </section>
+
+    <p>Cart Total: $99</p>
+
+    <script>
+        var cart = {};
+
+        function addToCart(productId) {
+            if (cart[productId]) {
+                cart[productId]++;
+            } else {
+                cart[productId] = 1;
+            }
+
+            updateCart();
+        }
+
+        function removeFromCart(productId) {
+            if (cart[productId]) {
+                if (cart[productId] > 1) {
+                    cart[productId]--;
+                } else {
+                    delete cart[productId];
+                }
+
+                updateCart();
+            }
+        }
+
+        function updateCart() {
+            var cartItems = document.querySelector('.cart');
+            cartItems.innerHTML = '';
+
+            for (var productId in cart) {
+                var cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = 'Product #' + productId + ': ' + cart[productId] + ' <button onclick="removeFromCart(' + productId + ')">Remove</button>';
+                cartItems.appendChild(cartItem);
+            }
+
+            updateCartTotal();
+        }
+
+        function updateCartTotal() {
+            var total = 0;
+            for (var productId in cart) {
+                total += cart[productId] * 99; // Assuming each product costs $99
+            }
+
+            document.querySelector('p:last-of-type').textContent = 'Cart Total: $' + total;
+        }
+    </script>
+</body>
+
+</html>
