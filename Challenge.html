@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="up">
+        <input type="text" name="input" id="input-number" placeholder="Enter a number">
+        <button class="play" onclick="generateRandomNumber()">Play</button>
+    </div>
+    <div class="down">
+        <input type="text" name="output" id="output-number">
+    </div>
+
+    <style>
+        body{
+            padding: 100px;
+        }
+        .up{
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .down{
+            width: 100%;
+        }
+    </style>
+
+    <script>
+
+        let inputNumber = document.getElementById("input-number");
+        let inputDisplayNumber = document.parseInt(inputDisplay.innerText);
+
+        let outputNumber = document.getElementById("output-number");
+        let outputDisplayNumber = document.parseInt(outputDisplay.innerText);
+
+        let winnerNumber;
+
+        function isWinnerNumber(){
+            winnerNumber = generateRandomNumber()
+        }
+
+
+        function generateRandomNumber(){
+            const randomNumber =  Math.floor(Math.random() * 100);
+
+            document.getElementById('output-number').value = randomNumber;
+        }
+    </script>
+
+
+</body>
+</html>
